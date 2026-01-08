@@ -39,4 +39,11 @@ public class Health : MonoBehaviour
         dead = true;
         // Additional logic for death (e.g., disable player controls)
     }
+
+    public void addHealth(float _health)
+    {
+        if (dead) return;
+        currentHealth = Mathf.Clamp(currentHealth + (int)_health, 0, startingHealth);
+        Debug.Log("Health Added! Current Health: " + currentHealth);
+    }
 }
