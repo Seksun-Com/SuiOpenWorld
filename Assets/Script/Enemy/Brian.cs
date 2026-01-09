@@ -3,6 +3,7 @@ using UnityEngine;
 public class Brian : MonoBehaviour
 {
     [SerializeField] private float damage;
+    [SerializeField] private float speed;
     [SerializeField] private int distanceMove;
     private Vector3 initialPosition;
     private bool movingLeft;
@@ -26,7 +27,7 @@ public class Brian : MonoBehaviour
     {
         if (movingLeft)
         {
-            transform.Translate(Vector2.left * Time.deltaTime);
+            transform.Translate(Vector2.left * speed * Time.deltaTime);
             if (transform.position.x <= initialPosition.x - distanceMove)
             {
                 movingLeft = false;
@@ -35,7 +36,7 @@ public class Brian : MonoBehaviour
         else
         {
 
-            transform.Translate(Vector2.right * Time.deltaTime);
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
             if (transform.position.x >= initialPosition.x + distanceMove)
             {
                 movingLeft = true;
@@ -51,6 +52,6 @@ public class Brian : MonoBehaviour
         else
             bodyX = Mathf.Abs(body.transform.localScale.x);
 
-        transform.localScale = new Vector3(bodyX, body.transform.localScale.y, body.transform.localScale.z);
+        transform.localScale = new Vector3(bodyX, body.transform.localScale.y, body.transform.localScale.z);      
     }
 }
