@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    //[SerializeField] private int attackDamage = 1;
+    // [SerializeField] private int attackDamage = 1;
     [SerializeField] private float attackCooldown = 0.5f;
     [SerializeField] private ProjectileBehavior projectilePrefab;
     [SerializeField] private Transform shootPoint;
@@ -12,14 +12,14 @@ public class PlayerAttack : MonoBehaviour
     private Animator anim;
     private PlayerMovement playerMovement;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         anim = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (playerMovement.OnWall()) 
             return;
@@ -35,7 +35,7 @@ public class PlayerAttack : MonoBehaviour
         lastAttackTime += Time.deltaTime;
     }
 
-    void Attack()
+    private void Attack()
     {
         ProjectileBehavior newProjectile = Instantiate(projectilePrefab, shootPoint.position, transform.rotation);
         newProjectile.SetDirection(transform.localScale.x);

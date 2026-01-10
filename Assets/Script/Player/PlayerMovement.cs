@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,14 +12,14 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private BoxCollider2D boxCollider;
     private float wallJumpCooldown;
-    void Start()
+    private void Start()
     {
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
-    void Update()
+    private void Update()
     {
         // Handle horizontal movement input
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -36,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("grounded", IsGrounded());
     }
     
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         // Handle jump input
         if (wallJumpCooldown > 0.2f)
