@@ -10,9 +10,17 @@ public class Door : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             if (transform.position.x > collision.transform.position.x)
+            {
                 cam.MovetoNewRoom(nextRoom);
+                nextRoom.GetComponent<Room>().ActivateRoom(true);
+                previousRoom.GetComponent<Room>().ActivateRoom(false);
+            }
             else
+            {
                 cam.MovetoNewRoom(previousRoom);
+                previousRoom.GetComponent<Room>().ActivateRoom(true);
+                nextRoom.GetComponent<Room>().ActivateRoom(false);
+            }
         }
     }
 }

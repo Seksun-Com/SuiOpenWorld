@@ -36,7 +36,7 @@ public class SpikeHead : EnemyDamage
         CalculateDirection();
         for (int i = 0; i < directions.Length; i++)
         {
-            Debug.DrawRay(transform.position, directions[i], Color.red, 0.5f);
+            Debug.DrawRay(transform.position, directions[i], Color.red);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, directions[i], distance, playerLayer);
             if (hit.collider != null && !attacking)
             {

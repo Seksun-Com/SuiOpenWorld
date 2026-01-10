@@ -16,6 +16,7 @@ public class Firetrap : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        SetupFiretrap();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -47,8 +48,13 @@ public class Firetrap : MonoBehaviour
 
         // Stay active and wait for reset Firetrap
         yield return new WaitForSeconds(activeTime);
-        anim.SetBool("activated", false);
-        active = false;
+        SetupFiretrap();
+    }
+    private void SetupFiretrap()
+    {
         triggered = false;
+        active = false;
+        anim.SetBool("activated", false);
+        spriteRenderer.color = Color.white;
     }
 }
