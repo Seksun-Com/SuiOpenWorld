@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6373626197915106861}
   - component: {fileID: 1172587238095151839}
-  - component: {fileID: 2827693752273130912}
   - component: {fileID: 6575438175453245443}
   m_Layer: 9
   m_Name: spike (2)
@@ -92,19 +91,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2827693752273130912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171277285418939245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d367b5fd9509f94bafbe20ca0b52bcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Spike
-  damage: 1
 --- !u!61 &6575438175453245443
 BoxCollider2D:
   m_ObjectHideFlags: 0
