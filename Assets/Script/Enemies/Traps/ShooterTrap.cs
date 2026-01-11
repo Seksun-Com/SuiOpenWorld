@@ -11,7 +11,6 @@ public class ShooterTrap : MonoBehaviour
         cooldownTimer = 0;
         bullets[FindBulletIndex()].transform.position = shootPoint.position;
         bullets[FindBulletIndex()].GetComponent<EnemyProjectile>().ActiveProjectile();
-
     }
     private int FindBulletIndex()
     {
