@@ -6,12 +6,17 @@ public class Health : MonoBehaviour
     [Header("Health Settings")]
     [SerializeField] public int startingHealth;
     public int currentHealth { get; private set; }
-    private Animator anim;
-    private bool dead;
     [Header("iFrames Settings")]
     [SerializeField] private float iFramesDuration;
     [SerializeField] private int numberOfFlashes;
     [SerializeField] private SpriteRenderer spriteRend;
+
+    [Header("Components")]
+    [SerializeField] private Behaviour[] components;
+    //References
+    private Animator anim;
+    private bool dead;
+    private bool invunerability;
     private void Start()
     {
         currentHealth = startingHealth;
@@ -20,13 +25,16 @@ public class Health : MonoBehaviour
     }
     public void TakeDamage(float _damage)
     {
-        currentHealth = Mathf.Clamp(currentHealth - (int)_damage, 0, startingHealth);
-        if(currentHealth <= 0)
+        if(!invunerability)
         {
-            if(!dead) Die();
-        }else
-        {
-            Hit();
+            currentHealth = Mathf.Clamp(currentHealth - (int)_damage, 0, startingHealth);
+            if(currentHealth <= 0)
+            {
+                if(!dead) Die();
+            }else
+            {
+                Hit();
+            }   
         }
     }
 
@@ -40,12 +48,13 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        // Play death animation or effects
         anim.SetTrigger("die");
-        GetComponent<PlayerMovement>().enabled = false;
+        //Deactive all components
+        foreach(Behaviour c in components){
+            c.enabled = false;
+        }
+        // Play death animation or effects
         dead = true;
-        // Debug.Log("Dead!");
-        // Additional logic for death (e.g., disable player controls)
     }
 
     public void addHealth(float _health)
@@ -57,6 +66,7 @@ public class Health : MonoBehaviour
 
     private IEnumerator Invunerability()
     {
+        invunerability = true;
         Physics2D.IgnoreLayerCollision(8, 9, true);
         for (int i = 0; i < numberOfFlashes; i++)
         {
@@ -66,5 +76,10 @@ public class Health : MonoBehaviour
             yield return new WaitForSeconds(iFramesDuration / (numberOfFlashes * 2));
         }
         Physics2D.IgnoreLayerCollision(8, 9, false);
+        invunerability = false;
+    }
+    private void Deactivate()
+    {
+        gameObject.SetActive(false);
     }
 }

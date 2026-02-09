@@ -10,7 +10,6 @@ public class Brian : MonoBehaviour
     private Rigidbody2D body;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Collide with " + collision.name);
         if (collision.CompareTag("Player"))
         {
             collision.GetComponent<Health>().TakeDamage(damage);
